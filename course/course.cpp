@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 
-Course::Course(const std::string &courseName, int capacity) {
-    this->courseName = courseName;
-    this->capacity = (capacity > 0) ? capacity : 0;
+Course::Course(const std::string &name, int n) {
+    courseName = name;
+    capacity = (n > 0) ? n : 0;
     numberOfStudents = 0;
     students = new std::string[capacity];
 }
@@ -55,9 +55,8 @@ int Course::getNumberOfStudents() const {
 
 std::ostream &operator<<(std::ostream &output, const Course &course) {
     output << "Number of students in the " << course.getCourseName() << " course: " << course.getNumberOfStudents() << "." << std::endl;
-    std::string *students = course.getStudents();
     for (int i = 0; i < course.getNumberOfStudents(); i++) {
-        output << students[i] << ", ";
+        output << course.students[i] << ", ";
     }
     output << "\b\b." << std::endl;
     return output;
